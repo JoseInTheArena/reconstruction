@@ -6,15 +6,11 @@
 // 3. Given s = "pwwkew", the answer is "wke", with the length of 3. Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
 
 
-function solution(s) {
+export function solution(s) {
     let longest = 0, left = 0, right = 0, window = 0;
     const set = new Set();
-
     for (let char of s){
-        console.log(`Processing char: ${char} at position ${right}`);
         while (set.has(char)){
-            console.log(`\tRemoving char: ${s[left]} at position ${left}`);
-            console.log(`\tSet before deletion: ${Array.from(set).join(',')}`);
             set.delete(s[left]);
             left++
         }
@@ -22,12 +18,6 @@ function solution(s) {
         longest = Math.max(longest, window);
         set.add(char);
         right++;
-        console.log(`\tchar: ${char}, left: ${left}, right: ${right}, window: ${window}, longest: ${longest}`);
     }
-    
     return longest;
 }
-
-
-const [, , str] = process.argv;
-console.log(solution(str));

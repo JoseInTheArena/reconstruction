@@ -22,7 +22,7 @@
 // each element of array A is an integer within the range [1..1,000,000,000].
 
 
-function solution(A) {
+export function solution(A) {
     A = A.sort((a, b) => a - b);
     for (let i = 1; i < A.length; i++) {
         if (A[i] - A[i - 1] === 1) {
@@ -31,16 +31,3 @@ function solution(A) {
     }
     return false;
 }
-
-// Parse array from CLI argument
-const [, , arrStr] = process.argv;
-let arr = [];
-try {
-    arr = JSON.parse(arrStr);
-    if (!Array.isArray(arr)) throw new Error('Not an array');
-} catch (e) {
-    console.error('Please provide a valid array as a JSON string. Example: node offbyone.js "[1,2,3]"');
-    process.exit(1);
-}
-
-console.log(solution(arr));

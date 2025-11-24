@@ -4,9 +4,6 @@
 // 6, "I"     -> "IIIIII"
 // 5, "Hello" -> "HelloHelloHelloHelloHello"
 
-function repeatStr (n, s) {
+export function solution(s, n) {
     return s.repeat(n);
 }
-
-[,, n, s] = process.argv;
-console.log(repeatStr(n, s));

@@ -32,31 +32,29 @@
 
 
 
+
 function getCombinations(arr) {
   let result = ['']; // start with the empty string
-
   for (let item of arr) {
-    // For every existing combination, make a new one that concatenates this item
     const newCombos = result.map(combo => combo + item);
-    // Add all the new combos to the result
     result = result.concat(newCombos);
   }
-
   return result;
 }
 
+
 function hasUniqueCharacters(s){
-    const charSet = new Set();
-    for (let char of s){
-        charSet.add(char);
-    }
-    return charSet.size === s.length;
+  const charSet = new Set();
+  for (let char of s){
+    charSet.add(char);
+  }
+  return charSet.size === s.length;
 }
 
-function solution(A) {
-    const uniqueArr = A.filter(hasUniqueCharacters);
-    const allCombinations = getCombinations(uniqueArr);
-    const uniqueCombinations = allCombinations.filter(hasUniqueCharacters);
-    const maxLength = uniqueCombinations.reduce((max, s) => Math.max(max, s.length), 0);
-    return maxLength;
+export function solution(A) {
+  const uniqueArr = A.filter(hasUniqueCharacters);
+  const allCombinations = getCombinations(uniqueArr);
+  const uniqueCombinations = allCombinations.filter(hasUniqueCharacters);
+  const maxLength = uniqueCombinations.reduce((max, s) => Math.max(max, s.length), 0);
+  return maxLength;
 }

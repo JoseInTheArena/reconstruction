@@ -1,12 +1,13 @@
 
-function solution(A, B) {
-    let count = 0;
-    for (let i = A; i <= B; i++) {
-        if (consecutiveFactors(i).length > 0) {
-            count++;
-        }
+
+export function factors(n) {
+  const result = [];
+  for (let i = 1; i <= n; i++) {
+    if (n % i === 0) {
+      result.push(i);
     }
-    return count;
+  }
+  return result;
 }
 
 function consecutiveFactors(n) {
@@ -53,18 +54,3 @@ function consecutiveFactorsOofN(n) {
   }
   return result;
 }
-
-[,, A, B] = process.argv;
-const startTime = Date.now();
-const result = solution(Number(A), Number(B));
-const endTime = Date.now();
-const elapsedMs = endTime - startTime;
-if (elapsedMs < 1000) {
-  console.log(result); // [1, 2, 4, 7, 14, 28]
-  console.log(`Completed in ${elapsedMs} ms`);
-} else {
-  const seconds = (elapsedMs / 1000).toFixed(3);
-  console.log(result); // [1, 2, 4, 7, 14, 28]
-  console.log(`Completed in ${seconds} seconds`);
-}
-

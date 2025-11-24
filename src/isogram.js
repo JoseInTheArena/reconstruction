@@ -10,31 +10,7 @@
  * 
  */
 
-function isIsogram(str){
-    const map = new Map();
-    for (let char of str.toLowerCase()) {
-        if (map.has(char)) {
-            return false;
-        }
-        map.set(char, true);
-    }
-    return true;
-}
-
-function isIsogram2(str){
+export function solution(str){
     const lowerStr = str.toLowerCase();
     return new Set(lowerStr).size === lowerStr.length;
 }
-
-// Get command line arguments
-const [,, str] = process.argv;
-
-if (!str) {
-    console.error('Please provide a string argument');
-    console.error('Usage: node ending.js <string>');
-    process.exit(1);
-}
-
-// Run the solution and print the result
-const result = isIsogram2(str);
-console.log(result);

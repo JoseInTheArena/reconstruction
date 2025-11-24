@@ -22,42 +22,21 @@
 // you can write to stdout for debugging purposes, e.g.
 // console.log('this is a debug message');
 
-function solution(N) {
+export function solution(N) {
   let count = 0;         // total number of 1s we’ll collect
   let place = 1;         // start at the ones place (1, 10, 100, 1000...)
-
-  // Keep going while there are digits left in N
   while (place <= N) {
-    // Split N into three parts:
-    const higher = Math.floor(N / (place * 10));  // digits to the left
-    const current = Math.floor((N / place) % 10); // the current digit
-    const lower = N % place;                      // digits to the right
-
-    // Now we count how many 1s show up in this "column"
+    const higher = Math.floor(N / (place * 10));
+    const current = Math.floor((N / place) % 10);
+    const lower = N % place;
     if (current === 0) {
-      // The current digit is below 1: only full cycles contribute
       count += higher * place;
     } else if (current === 1) {
-      // The current digit is exactly 1: count full cycles + what's left
       count += higher * place + (lower + 1);
     } else {
-      // The current digit is bigger than 1: all full cycles plus one more
       count += (higher + 1) * place;
     }
-
-    // Move one digit to the left (ones → tens → hundreds → ...)
     place *= 10;
   }
-
   return count;
 }
-
-
-
-
-let [, , N] = process.argv;
-const startTime = Date.now();
-const result = solution(parseInt(N, 10));
-const endTime = Date.now();
-const seconds = ((endTime - startTime) / 1000).toFixed(3);
-console.log(`in ${seconds} seconds ${result}`);
