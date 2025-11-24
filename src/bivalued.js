@@ -17,7 +17,7 @@
 // N is an integer within the range [1..100,000];
 // each element of array A is an integer within the range [−1,000,000,000..1,000,000,000].
 
-
+// Previous approach
 function _solution(A) {
     let currentLength = 0;
     let maxLength = 0;
@@ -46,7 +46,8 @@ function _solution(A) {
     return maxLength > currentLength ? maxLength : currentLength;
 }
 
-function solution(A) {
+// Sliding window approach
+export function solution(A) {
     let left = 0, right = 0, longest = 0, window = 0;
     const map = new Map();
     for (let num of A){
@@ -69,16 +70,3 @@ function solution(A) {
     }
     return longest;
 }
-
-
-const [, , arrStr] = process.argv;
-let arr = [];
-try {
-    arr = JSON.parse(arrStr);
-    if (!Array.isArray(arr)) throw new Error('Not an array');
-} catch (e) {
-    console.error('Please provide a valid array as a JSON string. Example: node bivalued.js "[1,2,3]"');
-    process.exit(1);
-}
-
-console.log(solution(arr));
